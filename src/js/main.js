@@ -1,6 +1,15 @@
-import { fetchCat, fetchCatByBreed } from "./cats"
+import { fetchBreed, fetchCatByBreed, catInfoById } from "./cat-api"
 
+refs = {
+    breeds: document.querySelector('.breed-select'),
+    loader: document.querySelector('.loader'),
+    error: document.querySelector('.error'),
+    container: document.querySelector('.cat-info')
+};
 
-fetchCat();
+fetchBreed().then(res => {
+    refs.breeds.innerHTML = res.map(({id,name}) => {
+        return `<option value="${id}">${name}</option>`
+    })
+});
 
-fetchCatByBreed();
