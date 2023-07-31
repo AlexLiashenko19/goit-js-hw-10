@@ -1,0 +1,2 @@
+var e;fetch("https://api.thecatapi.com/v1/breeds?api_key=live_CxzBagUefcHs9Kon2FFTN2k9j51PXR8yF9MhL7KNkdHT3H74ZUg7tpnM4C5mu1fh").then((e=>{if(!e.ok)throw new Error(e.status);return e.json()})),fetch(`${url}/images/search?api_key=live_CxzBagUefcHs9Kon2FFTN2k9j51PXR8yF9MhL7KNkdHT3H74ZUg7tpnM4C5mu1fh&breed_ids=${e}`).then((e=>{if(!e.ok)throw new Error(e.status);return e.json()}));
+//# sourceMappingURL=index.2aae48cd.js.map
