@@ -14,6 +14,7 @@ const refs = {
 
 const { breeds, loader, container, error, select } = refs;
 
+loader.classList.remove("is-hidden");
 
 fetchBreed()
   .then(res => {
