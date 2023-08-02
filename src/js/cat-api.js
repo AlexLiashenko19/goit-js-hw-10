@@ -2,7 +2,7 @@ import { Notify } from "notiflix";
 const BASE_URL = 'https://api.thecatapi.com/v1';
 
 export function fetchBreed() {
-  return fetch(`${BASE_URL}/brds`).then(res => {
+  return fetch(`${BASE_URL}/breeds`).then(res => {
     if (!res.ok) throw new Error(res.status);
     return res.json()
   }); 
