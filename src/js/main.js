@@ -1,14 +1,18 @@
-import { fetchBreed, fetchCatByBreed, catsId, createMarkup } from './cat-api';
+import { fetchBreed, fetchCatByBreed, catsId  } from './cat-api';
+import { createMarkup } from "./markup";
 import { Notify } from "notiflix";
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css'
 
 const refs = {
   breeds: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
   container: document.querySelector('.cat-info'),
+  error: document.querySelector('.error'),
+  select: document.querySelector('.js-breed-select'),
 };
 
-const { breeds, loader, container } = refs;
+const { breeds, loader, container, error, select } = refs;
 
 
 fetchBreed()
@@ -21,10 +25,14 @@ fetchBreed()
     new SlimSelect({
       select: '.breed-select',
     });
+select.classList.remove("is-hidden")
   })
-  .catch(err => Notify.failure(err.status)).finally(() => {
+  .catch(err => {
+    Notify.failure(err.status)
+    error.classList.remove("is-hidden")
+  })
+  .finally(() => {
     loader.classList.add("is-hidden");
-    breeds.classList.remove("is-hidden");
   });
 
 breeds.addEventListener('change', () => {
@@ -38,7 +46,11 @@ breeds.addEventListener('change', () => {
       createMarkup(res, container);
     })
   })
-    .catch(err => Notify.failure(err.status)).finally(() => {
-      loader.classList.add("is-hidden");
-    });
+  .catch(err => {
+    Notify.failure(err.status)
+    error.classList.remove("is-hidden")
+  })
+  .finally(() => {
+    loader.classList.add("is-hidden");
+  });
 });
